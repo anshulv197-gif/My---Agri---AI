@@ -1,4 +1,4 @@
-import streamlit as st
+0import streamlit as st
 import google.generativeai as genai
 
 # 1. Page Configuration (Browser mein kaisa dikhega)
@@ -17,7 +17,8 @@ instruction = (
 )
 
 model = genai.GenerativeModel(
-    model_name='models/gemini-1.5-flash',
+model_name='gemini-1.5-flash'
+
     system_instruction=instruction
 )
 
