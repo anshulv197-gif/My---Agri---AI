@@ -13,7 +13,7 @@ instruction = "Aap Naughty ke personal assistant aur Agriculture expert hain."
 
 # 4. Model Setup (Line 20 aur 21 ko dhyan se dekhein)
 model = genai.GenerativeModel(
-    model_name='gemini-1.5-flash',
+    model_name='gemini-1.5-flash-latest',
     system_instruction=instruction
 )
 
