@@ -18,7 +18,7 @@ instruction = (
 
 # 4. Model Setup
 model = genai.GenerativeModel(
-    model_name='gemini-1.5-flash',
+    model_name='gemini-1.9-flash',
     system_instruction=instruction
 )
 
