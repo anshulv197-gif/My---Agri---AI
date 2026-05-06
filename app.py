@@ -1,56 +1,57 @@
 import streamlit as st
 import google.generativeai as genai
 
-# 1. Page Configuration (Browser mein kaisa dikhega)
+# 1. Page Configuration
 st.set_page_config(page_title="Naughty's Agri-AI", page_icon="🌱")
 
-# 2. API Key aur Model Setup
-# Apni API Key yahan quotation marks ke andar likhein
+# 2. API Key Setup
+# IMPORTANT: Niche "PASTE_YOUR_KEY_HERE" ki jagah apni asli API Key dalein
 API_KEY = "...gd4I" 
 genai.configure(api_key=API_KEY)
 
-# AI ki personality set karna
+# 3. AI ki Personality (System Instruction)
 instruction = (
     "Aap Naughty ke personal assistant hain. Aap Agriculture aur Tech "
-    "(jaise GIS, Remote Sensing) mein expert hain. Aapko sirf apne owner "
-    "ko polite aur accurate jawab dene hain."
+    "(jaise GIS, Remote Sensing, Agri-Informatics) mein expert hain. "
+    "Aapko polite aur accurate jawab dene hain."
 )
 
+# 4. Model Setup
 model = genai.GenerativeModel(
-model_name='gemini-1.5-flash',
-
+    model_name='gemini-1.5-flash',
     system_instruction=instruction
 )
 
-# 3. UI Design
-st.title("🌱 Naughty's Personal AI")
-st.markdown("Agriculture aur Tech Expert Assistant")
-
-# Chat history (Memory) ko initialize karna
+# 5. Chat History Maintain Karna
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Purani chat screen par dikhana
+st.title("🌱 Naughty's Personal AI")
+st.markdown("Agriculture aur Tech Expert Assistant")
+
+# Purani baatein dikhane ke liye
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# 4. Chat Logic
+# 6. User Input aur AI Response
 if prompt := st.chat_input("Puchiye, Naughty..."):
-    # User ka message save aur display karna
+    # User ka message add karein
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # AI se jawab mangna
     try:
+        # AI se jawab mangna
         response = model.generate_content(prompt)
-        full_response = response.text
+        ai_message = response.text
         
-        # Assistant ka jawab save aur display karna
+        # AI ka message dikhana aur save karna
         with st.chat_message("assistant"):
-            st.markdown(full_response)
-        st.session_state.messages.append({"role": "assistant", "content": full_response})
+            st.markdown(ai_message)
+        st.session_state.messages.append({"role": "assistant", "content": ai_message})
     
     except Exception as e:
-        st.error(f"Error: {e}")
+        # Agar koi galti ho toh error dikhaye
+        st.error(f"Dikkat aa rahi hai: {e}")
+
