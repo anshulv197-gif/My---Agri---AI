@@ -6,7 +6,7 @@ st.set_page_config(page_title="Naughty's Agri-AI", page_icon="🌱")
 
 # 2. API Key Setup
 # IMPORTANT: Niche "PASTE_YOUR_KEY_HERE" ki jagah apni asli API Key dalein
-API_KEY = "...gd4I" 
+API_KEY = "AIzaSyAGuIK5pstHzXHiGCqN6RU2LsAAtsHgd4I" 
 genai.configure(api_key=API_KEY)
 
 # 3. AI ki Personality (System Instruction)
