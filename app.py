@@ -17,7 +17,8 @@ instruction = (
 
 # 4. Model Setup (Sahi model name ke saath)
 model = genai.GenerativeModel(
-    model_name='gemini-1.5-flash',
+    model_name='models/
+    gemini-1.5-flash',
     system_instruction=instruction
 )
 
